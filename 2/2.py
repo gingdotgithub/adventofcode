@@ -1,4 +1,4 @@
-x,y = 0,0
+x,y,aim = 0,0,0
 while True:
     line = input()
     if line == '':
@@ -6,9 +6,10 @@ while True:
     direction, distance = line.split()
     if direction == "forward":
         x+= int(distance)
+        y+= aim*int(distance)
     elif direction == "up":
-        y-= int(distance)
+        aim-= int(distance)
     elif direction == "down":
-        y+= int(distance)
+        aim+= int(distance)
 
 print("answer: " + str(x*y))
