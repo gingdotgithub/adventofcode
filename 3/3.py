@@ -1,12 +1,6 @@
-import time
-
 datasize=12
 dataset = []
-originalcountof1s = 0
-countof1s = 0
-datalength = 0
-oxy = ""
-c02 = ""
+originalcountof1s, countof1s = 0, 0
 
 def myfilter(dataset, position, value):
     filtereddata = []
