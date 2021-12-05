@@ -22,6 +22,25 @@ while True:
                 vents[newcoord] += 1
             else:
                 vents[newcoord] = 1
+    else:
+        ventlinestartx = ventline[0]
+        ventlinestarty = ventline[1]
+        while True:
+            newcoord = str(ventlinestartx)+","+str(ventlinestarty)
+            if newcoord in vents.keys():
+                vents[newcoord] += 1
+            else:
+                vents[newcoord] = 1
+            if ventlinestartx == ventline[2]:
+                break
+            if ventlinestartx < ventline[2]:
+                ventlinestartx+=1
+            else:
+                ventlinestartx-=1
+            if ventlinestarty < ventline[3]:
+                ventlinestarty+=1
+            else:
+                ventlinestarty-=1
         
 
 print(vents)
