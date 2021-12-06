@@ -1,9 +1,12 @@
+from time import process_time
+starttime = 0.0
 vents = {}
 xmax = 0
 ymax = 0
 
 while True:
     newline = input()
+    starttime = process_time()
     if newline == '':
         break
     vent = newline.split(' -> ')
@@ -46,3 +49,4 @@ while True:
 print(vents)
 ventcount = [coord for coord, count in vents.items() if count >= 2]
 print(len(ventcount))
+print(process_time()-starttime)
