@@ -8,4 +8,5 @@
 | 3   | [:star:](../../commit/5244480c9899a73aef3433675deeabe3a2c75bb0#diff-008c04978f810f73df924acb1e3a23d7317853f1fdde397cc2cc21e2f4c3ad35) | [:star:](3/3.py) |
 | 4   | [:star:](../../commit/ef3b3a567dad27bbcf397af0966d1b99e85ce1a9#diff-818bc6575ba6e65012f859c4234ec7877db01fb29c3ae6aa7bc20ac13b2b8345) | [:star:](4/4.py) |
 | 5   | [:star:](../../commit/2b87248190848814c648710821aba39d1a476711#diff-ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d) | [:star:](5/5-2.py) |
-| 6   | [:star:](../../commit/802ae34aa19a9b6f48d00bd40a26fa768419351c#diff-65dda502025a95b6b20fab23769c35c55698fa9102419e12ee4b22c280642905)    | [:star:](6/6.py)  |
+| 6   | [:star:](6/6.py)    | [:star:](6/6.py)  |
+| 7   | [:star:](../../commit/802ae34aa19a9b6f48d00bd40a26fa768419351c#diff-65dda502025a95b6b20fab23769c35c55698fa9102419e12ee4b22c280642905)    | [:star:](7/7.py)  |
