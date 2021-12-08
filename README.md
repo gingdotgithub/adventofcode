@@ -10,3 +10,4 @@
 | 5   | [:star:](../../commit/2b87248190848814c648710821aba39d1a476711#diff-ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d) | [:star:](5/5-2.py) |
 | 6   | [:star:](6/6.py)    | [:star:](6/6.py)  |
 | 7   | [:star:](../../commit/802ae34aa19a9b6f48d00bd40a26fa768419351c#diff-65dda502025a95b6b20fab23769c35c55698fa9102419e12ee4b22c280642905)    | [:star:](7/7.py)  |
+| 8   | [:star:](../../commit/61e36faf6c0b8db8ab09a0358875ecad864b30b3#diff-9485372d809c218f31683eb4982ec0784c7accaab21fd239ddd1243443932ad4)    | [:star:](8/8.py)  |
