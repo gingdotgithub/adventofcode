@@ -12,3 +12,4 @@
 | 7   | [:star:](../../commit/802ae34aa19a9b6f48d00bd40a26fa768419351c#diff-65dda502025a95b6b20fab23769c35c55698fa9102419e12ee4b22c280642905)    | [:star:](7/7.py)  |
 | 8   | [:star:](../../commit/61e36faf6c0b8db8ab09a0358875ecad864b30b3#diff-9485372d809c218f31683eb4982ec0784c7accaab21fd239ddd1243443932ad4)    | [:star:](8/8.py)  |
 | 9   | [:star:](../../commit/80e73f1feae35703673c5041b190f05a7d01542d#diff-638b486d226b83cbce56d7ba537a5fb4572997371955d48118c647a03c7b314f)    | [:star:](9/9.py)  |
+| 10  | [:star:](../../commit/9d365951e6f2c9522d4bf448d49e928e540c498f#diff-1cd71218cebeee65bb76168c7f7fcf218f01f772f70e5d37d4b5c2a48d978668)    | [:star:](10/10.py)  |
