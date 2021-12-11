@@ -21,7 +21,8 @@ while True:
     octopi.append(list(map(int,list(readline))))
 
 printboard()
-for step in range(100):
+step = 0
+while True:
     flashing = []
     for x in range(len(octopi[0])):
         for y in range(len(octopi)):
@@ -37,4 +38,8 @@ for step in range(100):
                 
     if step < 10 or step%10 == 0:
         printboard()
+    if len(flashing) == 100:
+        print ("all flash: " + (str(step+1)))
+        break
+    step+=1
 print(str(countflashes))
