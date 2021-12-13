@@ -15,3 +15,4 @@
 | 10  | [:star:](../../commit/9d365951e6f2c9522d4bf448d49e928e540c498f#diff-1cd71218cebeee65bb76168c7f7fcf218f01f772f70e5d37d4b5c2a48d978668)    | [:star:](10/10.py)  |
 | 11  | [:star:](../../commit/e9884ea4144880b0ea83610c9e02ffa7e608d01f#diff-0cef5a91a4dfe44d2540c813b61e439975db4e9851524e39d7e8c8fbc2c739d0)    | [:star:](11/11.py)  |
 | 12  | [:star:](../../commit/0f6c12b239f335c6fe3f7495a545985b53c01277#diff-4fc82b26aecb47d2868c4efbe3581732a3e7cbcc6c2efb32062c08170a05eeb8)    | [:star:](12/12-2.py)  |
+| 13  | [:star:](../../commit/c034c1773bb1bf8d512c71375b9217b33115b543#diff-3fdba35f04dc8c462986c992bcf875546257113072a909c162f7e470e581e278)    | [:star:](13/13.py)  |
