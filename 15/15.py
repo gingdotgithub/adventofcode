@@ -19,12 +19,6 @@ for y in range (len(room)):
         if (y-1) >= 0:
             if distances[str(x)+","+str(y-1)] + room[y][x] < distances[str(x)+","+str(y)]:
                 distances[str(x)+","+str(y)] = distances[str(x)+","+str(y-1)] + room[y][x]
-        if (x+1) < len(room[0]):
-            if distances[str(x+1)+","+str(y)] + room[y][x] < distances[str(x)+","+str(y)]:
-                distances[str(x)+","+str(y)] = distances[str(x+1)+","+str(y)] + room[y][x]
-        if (y+1) < len(room):
-            if distances[str(x)+","+str(y+1)] + room[y][x] < distances[str(x)+","+str(y)]:
-                distances[str(x)+","+str(y)] = distances[str(x)+","+str(y+1)] + room[y][x]
 
 for cell in distances.keys():
     print("distance to " + cell + " = " + str(distances[cell]))
