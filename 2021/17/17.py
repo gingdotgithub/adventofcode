@@ -3,6 +3,8 @@ targetzone = [[14,50],[-267,-225]]
 xrange = []
 yrange = [abs(targetzone[1][0]),targetzone[1][0]]
 maxheight = 0
+counthits = 0
+hitvelos = []
 
 def tnum(n):
     return (n*(n+1))/2
@@ -16,8 +18,8 @@ while tnum(x) < abs(targetzone[0][1]):
     x+=1
 xrange.append(targetzone[0][1])
 
-for x in range(xrange[0],xrange[1]):
-    for y in range(yrange[1],yrange[0]):
+for x in range(xrange[0],xrange[1]+1):
+    for y in range(yrange[1],yrange[0]+1):
         print("trying "+str(x)+","+str(y))
         stepx = x
         stepy = y
@@ -28,6 +30,8 @@ for x in range(xrange[0],xrange[1]):
                 trialheight = stepy
             if stepx >= targetzone[0][0] and stepx <= targetzone[0][1] and stepy >= targetzone[1][0] and stepy <= targetzone[1][1]:
                 #hit
+                counthits+=1
+                hitvelos.append([x,y])
                 if trialheight > maxheight:
                     maxheight = trialheight
                     print("new max height = " + str(maxheight))
@@ -43,7 +47,6 @@ for x in range(xrange[0],xrange[1]):
             step+=1
 
 
-print(str(maxheight))
-                        
+print(str(counthits))
 
 
