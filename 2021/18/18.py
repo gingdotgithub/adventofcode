@@ -98,22 +98,28 @@ while True:
         break
     snailfish.append(json.loads(newline))
 
-ongoingsum = snailfish.pop(0)
-for sf in snailfish:
-    ongoingsum = [ongoingsum,sf]
-    needsreducing, indexoffound = checkneedsreducing(ongoingsum)
-    while needsreducing > 0:
-        print("needs reducing  - " + str(ongoingsum))
-        if needsreducing == 1:
-            print("doing depth")
-            ongoingsum = explodepair(ongoingsum, indexoffound)
-        elif needsreducing == 2:
-            print("doing literal")
-            ongoingsum = splitliteral(ongoingsum, indexoffound)
-        needsreducing, indexoffound = checkneedsreducing(ongoingsum)
-
-print("final answer: " + str(ongoingsum)) 
-print(calc_magnitude(ongoingsum))
+# ongoingsum = snailfish.pop(0)
+# for sf in snailfish:
+maxmagnitude = 0
+for x in range(len(snailfish)):
+    for y in range(len(snailfish)):
+        if x != y:
+            ongoingsum = [snailfish[x],snailfish[y]]
+            needsreducing, indexoffound = checkneedsreducing(ongoingsum)
+            while needsreducing > 0:
+                print("needs reducing  - " + str(ongoingsum))
+                if needsreducing == 1:
+                    print("doing depth")
+                    ongoingsum = explodepair(ongoingsum, indexoffound)
+                elif needsreducing == 2:
+                    print("doing literal")
+                    ongoingsum = splitliteral(ongoingsum, indexoffound)
+                needsreducing, indexoffound = checkneedsreducing(ongoingsum)
+            thismagnitude = calc_magnitude(ongoingsum)
+            if thismagnitude > maxmagnitude:
+                maxmagnitude = thismagnitude
+#print("final answer: " + str(ongoingsum)) 
+print(int(maxmagnitude))
 
 
 # test = json.loads("[[[[1,1],[2,2]],[3,3]],[4,4]]")
