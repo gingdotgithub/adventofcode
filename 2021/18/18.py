@@ -24,12 +24,6 @@ def checkneedsreducing(currentsf):
     if literalindexfound < len(stringversion):
         return 2, literalindexfound
     return 0, 0
-    #if depthindexfound == len(stringversion) and literalindexfound == len(stringversion):
-    
-    #elif depthindexfound < literalindexfound:
-        
-    #else:
-        #return 2, literalindexfound
 
 def splitliteral(currentsf, indexsf):
     stringversion = str(currentsf)
@@ -62,10 +56,6 @@ def explodepair(currentsf,indexsf):
         x-=1
     x = 0
     while x < len(right)-2:
-        # if (right[x:x+3]).isdigit():
-        #     digit = int(right[x:x+3])+int(pair1)
-        #     right = right[0:x] + str(digit) + right[x+3:]
-        #     break
         if (right[x:x+2]).isdigit():
             digit = int(right[x:x+2])+int(pair1)
             right = right[0:x] + str(digit) + right[x+2:]
@@ -78,7 +68,7 @@ def explodepair(currentsf,indexsf):
     return json.loads(left+"0"+right)
 
 def calc_magnitude(mylist):
-    total = 0  # don't use `sum` as a variable name
+    total = 0 
     part1 = 0
     part2 = 0
     if isinstance(mylist[0],int):
