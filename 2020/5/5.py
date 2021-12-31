@@ -1,4 +1,5 @@
 maxseatID = 0
+seatIDs = []
 
 while True:
     newline = input()
@@ -11,7 +12,13 @@ while True:
     coldata = coldata.replace("R","1")
     coldata = coldata.replace("L","0")
     seatID = (int(rowdata,2)*8)+int(coldata,2)
+    seatIDs.append(seatID)
     if seatID > maxseatID:
         maxseatID = seatID
 
 print(maxseatID)
+seatIDs = sorted(seatIDs)
+for x in range(len(seatIDs)):
+    if x>8 and x<924:
+        if seatIDs[x-1] != seatIDs[x]-1:
+            print(seatIDs[x]-1)
