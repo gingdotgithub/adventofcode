@@ -47,8 +47,8 @@ while True:
 
 
 inputnum = 10000000
-answer = 1
-while answer > 0:
+latestinputval = ""
+while inputnum > 1111111:
     inputnum-=1
     inputval = ""
     mystack = []
@@ -68,16 +68,15 @@ while answer > 0:
                 break
             mynvals.pop(0)
             inputval+=str(temp)
-    if len(inputval) == 14:
-        print("trying" + inputval)
+    if len(inputval) == 14 and '0' not in inputval:
+        print("trying " + inputval)
         instcopy = instructions.copy()
         result = 0
         for inst in instcopy:
             #if inst[0] == 'inp':
             #    print("w="+str(myvs['w'])+",x="+str(myvs['x'])+",y="+str(myvs['y'])+",z="+str(myvs['z']))
             result = process_ALU(inst)
-        answer = result
-    else:
-        answer = 1
-print(answer)
-print(inputval)
+        if result == 0:
+            latestinputval = inputval
+#print(answer)
+print(latestinputval)
