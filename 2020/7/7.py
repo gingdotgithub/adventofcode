@@ -35,5 +35,14 @@ def check_bag(bagtocheck,target):
         x+=2
     return False
 
+def count_bags(target):
+    global bags
+    sumofbags = 0
+    x = 0
+    while x < len(bags[target]):
+        sumofbags = sumofbags + bags[target][x] + (bags[target][x]*count_bags(bags[target][x+1]))
+        x+=2
+    return sumofbags
 
-print(what_bags('shiny gold'))
+#print(what_bags('shiny gold'))
+print(count_bags('shiny gold'))
