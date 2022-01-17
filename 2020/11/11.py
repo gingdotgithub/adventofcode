@@ -1,4 +1,5 @@
 import copy
+from collections import Counter
 seating = []
 
 while True:
@@ -12,22 +13,51 @@ h = len(seating)
 def count_neighbours(x,y):
     global w, h, seating
     Occupied = 0
-    if y > 0:
-        if x > 0:
-            Occupied += 1 if seating[y-1][x-1] == '#' else 0
-        Occupied += 1 if seating[y-1][x] == '#' else 0
-        if x < w-1:
-            Occupied += 1 if seating[y-1][x+1] == '#' else 0
-    if x > 0:
-        Occupied += 1 if seating[y][x-1] == '#' else 0
-    if x < w-1:
-        Occupied += 1 if seating[y][x+1] == '#' else 0
-    if y < h-1:
-        if x > 0:
-            Occupied += 1 if seating[y+1][x-1] == '#' else 0
-        Occupied += 1 if seating[y+1][x] == '#' else 0
-        if x < w-1:
-            Occupied += 1 if seating[y+1][x+1] == '#' else 0
+    sidesHit = Counter()
+    visibleHit = Counter()
+    n = 0
+    while n < w and len(sidesHit) < 4 and len(visibleHit) < 8:
+        if y-n > 0:
+            if x-n > 0:
+                if visibleHit[0] != 1 and seating[y-n-1][x-n-1] != '.':
+                    Occupied += 1 if seating[y-n-1][x-n-1] == '#' else 0
+                    visibleHit[0] = 1
+            else:
+                sidesHit[0] = 1
+            if visibleHit[1] != 1 and seating[y-n-1][x] != '.':
+                Occupied += 1 if seating[y-n-1][x] == '#' else 0
+                visibleHit[1] = 1
+            if x+n < w-1:
+                if visibleHit[2] != 1 and seating[y-n-1][x+n+1] != '.':
+                    Occupied += 1 if seating[y-n-1][x+n+1] == '#' else 0
+                    visibleHit[2] = 1
+            else:
+                sidesHit[2] = 1
+        else:
+            sidesHit[3] = 1
+        if x-n > 0:
+            if visibleHit[4] != 1 and seating[y][x-n-1] != '.':
+                Occupied += 1 if seating[y][x-n-1] == '#' else 0
+                visibleHit[4] = 1
+        if x+n < w-1:
+            if visibleHit[5] != 1 and seating[y][x+n+1] != '.':
+                Occupied += 1 if seating[y][x+n+1] == '#' else 0
+                visibleHit[5] = 1
+        if y+n < h-1:
+            if x-n > 0:
+                if visibleHit[6] != 1 and seating[y+n+1][x-n-1] != '.':
+                    Occupied += 1 if seating[y+n+1][x-n-1] == '#' else 0
+                    visibleHit[6] = 1
+            if visibleHit[7] != 1 and seating[y+n+1][x] != '.':
+                Occupied += 1 if seating[y+n+1][x] == '#' else 0
+                visibleHit[7] = 1
+            if x+n < w-1:
+                if visibleHit[8] != 1 and seating[y+n+1][x+n+1] != '.':
+                    Occupied += 1 if seating[y+n+1][x+n+1] == '#' else 0
+                    visibleHit[8] = 1
+        else:
+            sidesHit[1] = 1
+        n+=1
     return Occupied
 
 def print_seating():
@@ -36,7 +66,7 @@ def print_seating():
         print("".join(row))
     print("")
 
-#print_seating()
+print_seating()
 
 change_count = 1
 count_loops = 0
@@ -51,12 +81,12 @@ while change_count > 0:
             if seating[y][x] == 'L' and Occupied == 0:
                 newseating[y][x] = "#"
                 change_count+=1
-            if seating[y][x] == '#' and Occupied >= 4:
+            if seating[y][x] == '#' and Occupied >= 5:
                 newseating[y][x] = "L" 
                 change_count+=1
     seating = copy.deepcopy(newseating)
     count_loops+=1
-    #print_seating()
+    print_seating()
 
 Occupied = 0
 for x in range(len(seating[0])):
