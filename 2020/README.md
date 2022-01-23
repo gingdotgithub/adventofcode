@@ -14,3 +14,4 @@
 | 9   | [:star:](../../../blob/7f00a3783c0dcfa9dfffd94ace5a2789ed797d48/2020/9/9.py) | [:star:](9/9.py) |
 | 10   | [:star:](../../../blob/efd70ad7334a6f0dd3fbf592a6cb97389e27f0d1/2020/10/10.py) | [:star:](10/10.py) |
 | 11   | [:star:](../../../blob/8c93a84bf745b20d117e618903d1a54f73aacbf8/2020/11/11.py) | [:star:](11/11.py) |
+| 12   | [:star:](../../../blob/3e6393cda8cd8a3caacf488107b59dc744b7d764/2020/12/12.py) | [:star:](12/12.py) |
