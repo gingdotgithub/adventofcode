@@ -6,10 +6,17 @@ fn main() {
     let data = my_str.split("\n");
     for entry in data {
         let mut entry: f32 = entry.parse().unwrap();
-        entry = ((entry / 3.0).floor()) -2.0;
-        sumfuel+= entry;
+        //entry = ((entry / 3.0).floor()) -2.0;
+        while entry >= 8.0 {
+            entry = calc_fuel(entry);
+            sumfuel+= entry;
+        }
     }
     println!("{}",sumfuel);
+}
+
+fn calc_fuel(fuel: f32) -> f32 {
+    return ((fuel / 3.0).floor()) -2.0;
 }
 
 
