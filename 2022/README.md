@@ -3,5 +3,5 @@
 
 | Day | Part 1           | Part 2           |
 |-----|------------------|------------------|
-| 1   | [:star:](1/1.py) | [:star:](1/1.py) |
-|
+| 1   | [:star:](day1/src/main.rs) | [:star:](day1/src/main.rs) |
+
