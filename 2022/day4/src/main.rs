@@ -44,9 +44,15 @@ fn elf_contains(elf1: Vec<i8>, elf2: Vec<i8>) -> bool {
 fn elves_overlap(elf1: Vec<i8>, elf2: Vec<i8>) -> bool {
     let elf1range: HashSet<i8> = (elf1[0]..=elf1[1]).collect();
     let elf2range: HashSet<i8> = (elf2[0]..=elf2[1]).collect();
-    if elf1range.contains(&elf2[0]) || elf1range.contains(&elf2[1]) {
-        return true;
-    } else if elf2range.contains(&elf1[0]) || elf2range.contains(&elf1[1]) {
+    // if elf1range.contains(&elf2[0]) || elf1range.contains(&elf2[1]) {
+    //     return true;
+    // } else if elf2range.contains(&elf1[0]) || elf2range.contains(&elf1[1]) {
+    //     return true;
+    // } else {
+    //     return false;
+    // }
+    let elf_overlap: HashSet<i8> = &elf1range & &elf2range;
+    if elf_overlap.len() > 0 {
         return true;
     } else {
         return false;
