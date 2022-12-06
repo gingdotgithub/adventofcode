@@ -1,7 +1,7 @@
 use std::collections::HashSet;
 
 fn main() {
-    let my_str = include_str!("4.in");
+    let my_str = include_str!("6.in");
 
     //part 1
     let data = my_str.split("\n");
