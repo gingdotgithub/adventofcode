@@ -10,4 +10,6 @@
 | 5   | [:star:](day5/src/main.rs) | [:star:](day5/src/main.rs) |
 | 6   | [:star:](day6/src/main.rs) | [:star:](day6/src/main.rs) |
 | 7   |  |  |
-| 6   | [:star:](day8/src/main.rs) | [:star:](day8/src/main.rs) |
+| 8   | [:star:](day8/src/main.rs) | [:star:](day8/src/main.rs) |
+| 9   | [:star:](day9/src/main.rs) | [:star:](day9/src/main.rs) |
+| 10   | [:star:](day10/src/main.rs) | [:star:](day10/src/main.rs) |
