@@ -13,3 +13,4 @@
 | 8   | [:star:](day8/src/main.rs) | [:star:](day8/src/main.rs) |
 | 9   | [:star:](day9/src/main.rs) | [:star:](day9/src/main.rs) |
 | 10   | [:star:](day10/src/main.rs) | [:star:](day10/src/main.rs) |
+| 11   | [:star:](day11/src/main.rs) | [:star:](day11/src/main.rs) |
