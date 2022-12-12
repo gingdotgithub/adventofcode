@@ -47,7 +47,7 @@ fn main() {
     }
 
     //dbg!(monkeys);
-    let mut modprod = 1;
+    let mut modprod = 1; // for part 2.
     for x in 0..monkeys.len() {
         monkitemcounts.push(0);
         modprod *= monkeys[x].divisor;
@@ -75,8 +75,8 @@ fn main() {
                     _ => worry,
                 };
                 println!(" .   worry now {worry}");
-                //worry = (worry as f64/3.0).floor() as usize;
-                worry = (worry%modprod);
+                //worry = (worry as f64/3.0).floor() as usize; //part 1
+                worry = (worry%modprod); // part 2
                 println!(" .   worry cut to {worry}");
                 let mut newmonkey = 0;
                 let mut newdivisor:usize = monkeys[y].divisor;
