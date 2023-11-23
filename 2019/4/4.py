@@ -1,3 +1,5 @@
+from collections import Counter
+
 def test():
 
     with open('4.test') as f:
@@ -8,7 +10,6 @@ def test():
 def checkPasscode(passcode):
     includesTwo = False
     validPasscode = True
-    #print(passcode)
     for x in range(0,len(passcode)-1):
         if passcode[x+1] == passcode[x]:
             includesTwo = True
@@ -17,6 +18,13 @@ def checkPasscode(passcode):
             return False
     return validPasscode and includesTwo
 
+def check2Max(passcode):
+    numCheck = Counter(passcode)
+    if 2 in numCheck.values():
+        return True
+    return False
+
+
 def part1():
     validCounter = 0
     for x in range(128392,643281):
@@ -24,6 +32,16 @@ def part1():
             validCounter = validCounter + 1
     print(validCounter)
 
+def part2():
+    validCounter = 0
+    for x in range(128392,643281):
+        passcode = str(x)
+        if checkPasscode(passcode):
+            if check2Max(passcode):
+                validCounter = validCounter + 1
+    print(validCounter)
 
-#test()
+
+test()
 part1()
+part2()
