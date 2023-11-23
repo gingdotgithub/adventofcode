@@ -1,13 +1,16 @@
 orbitMap = {}
 depthMap = {}
+pathMap = {}
 
 def test():
     orbitMap.clear()
     depthMap.clear()
+    pathMap.clear()
     with open('6.test') as f:
         buildmap(f.readlines())
-    countOrbits('COM',0)
+    countOrbits('COM',0,[])
     print(sum(depthMap.values()))
+    print(pathMap)
 
 
 def buildmap(orbits):
@@ -21,21 +24,34 @@ def buildmap(orbits):
     print(orbitMap)
 
 
-def countOrbits(parent,depth):
+def countOrbits(parent,depth,path):
     depthMap[parent] = depth
+    pathMap[parent] = path.copy()
     if parent in orbitMap.keys():
         depth = depth + 1
+        newpath = path.copy()
+        newpath.append(parent)
         for orbit in orbitMap[parent]:
-            countOrbits(orbit,depth)
+            countOrbits(orbit,depth,newpath)
 
 
 def part1():
     orbitMap.clear()
     depthMap.clear()
+    pathMap.clear()
     with open('6.in') as f:
         buildmap(f.readlines())
-    countOrbits('COM',0)
+    countOrbits('COM',0,[])
     print(sum(depthMap.values()))
+
+def part2():
+    PTY = set(pathMap['YOU'].copy())
+    PTS = set(pathMap['SAN'].copy())
+    print(len(PTY ^ PTS))
+
+
+
 
 test()
 part1()
+part2()
