@@ -3,11 +3,6 @@ use std::{
     collections::{BinaryHeap, HashMap, HashSet},
 };
 
-// struct Pos{
-//     px: usize,
-//     py: usize,
-// }
-
 fn main() {
     let mut themap:Vec<Vec<char>> = Vec::new();
     let my_str = include_str!("12.in");
