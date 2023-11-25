@@ -10,7 +10,23 @@ def part1():
 
     onecount = mostzerolayer.count("1")
     twocount = mostzerolayer.count("2")
-    print(onecount*twocount)
+    print("part 1 answer: ", onecount*twocount)
+
+def part2():
+     answer = ""
+     for y in range(0,height):
+        for x in range(0,width):
+             for i in range(0,len(imagegrid)):
+                  if imagegrid[i][(width*y)+x] == "0":
+                       answer = answer + " "
+                       break
+                  elif imagegrid[i][(width*y)+x] == "1":
+                       answer = answer + "0"
+                       break
+        answer = answer + "\n"
+     print("part 2 answer: \n")
+     print(answer)
+          
 
 imagedata = ""
 imagegrid = []
@@ -25,3 +41,4 @@ while x < len(imagedata):
     x = x+layer
 
 part1()
+part2()
