@@ -7,4 +7,4 @@
 | 2   | [:star:](2/2.py) | [:star:](2/2.py) |
 | 3   | [:star:](3/3.py) | [:star:](3/3.py) |
 | 3   | [:star:](4/4.py) | [:star:](4/4.py) |
-| 3   | [:star:](4/4.py) | [:star:](4/4.py) |
+| 3   | [:star:](https://github.com/gingdotgithub/adventofcode/commit/6117a236e06d6862fab976fc676863e75c187aa2) | [:star:](4/4.py) |
