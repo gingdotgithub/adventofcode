@@ -1,18 +1,29 @@
 def handtype(hand):
-    cards = set(hand)
-    if len(cards) == 1:
+    counts = dict.fromkeys(hand,0)
+
+    #processing Js as Jokers for part 2
+    largestkey = "" #will add counts of jokers to this
+    largestval = 0 
+    for c in hand:
+        counts[c] += 1
+        if c != "J" and counts[c] > largestval: #tracking the most common item
+            largestval = counts[c]
+            largestkey = c
+    if len(counts) > 1 and "J" in counts.keys(): #only works if its not five of a J
+        counts[largestkey] += counts["J"] #add Js to the biggest item
+        counts.pop("J")
+
+    #now doing the hand type calculation as normal (part 1)
+    if len(counts) == 1:
         print("5 of a kind")
         return 6
-    elif len(cards) == 5:
+    elif len(counts) == 5:
         print("high card")
         return 0
-    elif len(cards) == 4:
+    elif len(counts) == 4:
         print("pair")
         return 1
     else:
-        counts = dict.fromkeys(hand,0)
-        for c in hand:
-            counts[c] += 1
         #print(counts)
         if len(counts) == 2:
             if 4 in counts.values():
@@ -32,15 +43,14 @@ def handtype(hand):
     return 2
         
 
-
-t = {
+t = { #converts non-09 cards to alphabetically sortable letters instead
     "T": "a",
-    "J": "b",
+    "J": "1",
     "Q": "c",
     "K": "d",
     "A": "e"
 }
-winsorter = {}
+winsorter = {} #has types of hand in it, by ID, that can be sorted. e.g. 6 is five of a kind. 5 is four of a kind, etc
 
 with open('7.in') as f:
     hands = f.readlines()
@@ -51,16 +61,16 @@ for hand in hands:
     bid = int(handparts[1])
     handt = handtype(handparts[0])
     print(handt)
-    newhand = ""
+    newhand = "" #a string that'll hold the sortable string version from [t]ranslation
     for x in range(0,len(handparts[0])):
         if handparts[0][x] in t:
             newhand += t[handparts[0][x]]
         else:
             newhand += handparts[0][x]
     
-    if handt not in winsorter.keys():
+    if handt not in winsorter.keys(): #add the type of hand to the dictionary
         winsorter[handt] = {}
-    winsorter[handt][newhand] = int(handparts[1])
+    winsorter[handt][newhand] = int(handparts[1]) #dict of types of hand, as dicts (by hand) pointing to bids
 
 print(winsorter)
 
@@ -73,4 +83,3 @@ for handtype in sorted(winsorter.keys()):
         answer += (counter * winsorter[handtype][hand])
 
 print(answer)
-print("b">"a")
