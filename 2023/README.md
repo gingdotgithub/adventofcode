@@ -10,4 +10,5 @@
 | 5   | [:star:](https://github.com/gingdotgithub/adventofcode/commit/6117a236e06d6862fab976fc676863e75c187aa2) | [:star:](5/5.py) |
 | 6   | [:star:](6/6.py) | [:star:](6/6.py) |
 | 7   | [:star:](7/7.py) | [:star:](7/7.py) |
+| 8   | [:star:](8/8.py) | [:star:](8/8.py) |
 
