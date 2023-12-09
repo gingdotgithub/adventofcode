@@ -9,21 +9,25 @@ def processSeq(sequence):
             allZero = False
         nextSeq.append(nextitem)
     if allZero:
-        return 0
+        return 0,0
     else:
-        nextgap = processSeq(nextSeq)
-        return nextSeq[len(nextSeq)-1]+nextgap
+        prevgap,nextgap = processSeq(nextSeq)
+        return nextSeq[0]-prevgap,nextSeq[len(nextSeq)-1]+nextgap
     
 
 with open('9.in') as f:
     data = f.readlines()
 
 answer = 0
+answer2 = 0
 for row in data:
     sequence = list(map(int,row.strip().split()))
-    nextgap = processSeq(sequence)
+    prevgap,nextgap = processSeq(sequence)
+    preval = sequence[0]-prevgap
     nextval = sequence[len(sequence)-1]+nextgap
-    print(nextval)
+    print(preval,nextval)
     answer+= nextval
+    answer2+= preval
 
 print("part 1",answer)
+print("part 2",answer2)
