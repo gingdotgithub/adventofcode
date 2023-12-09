@@ -1,9 +1,13 @@
+import time
+
 seeds = {}
 maps = {}
 
 with open('5.in') as f:
     data = f.readlines()
-    
+starttime = time.time()
+
+
 seedsdata = data[0].split(":")
 seedranges = list(map(int, seedsdata[1].split()))
 #part 2 for seeds
@@ -110,4 +114,4 @@ for seedrange in seeds:
                 lowest = min(seedrange)
 
 print("part 2:",lowest)
-
+print("timing: ", time.time()-starttime)
