@@ -18,6 +18,7 @@ def processSeq(sequence):
 with open('9.in') as f:
     data = f.readlines()
 
+starttime = time.time()
 answer = 0
 answer2 = 0
 for row in data:
@@ -25,9 +26,11 @@ for row in data:
     prevgap,nextgap = processSeq(sequence)
     preval = sequence[0]-prevgap
     nextval = sequence[len(sequence)-1]+nextgap
-    print(preval,nextval)
+    #print(preval,nextval)
     answer+= nextval
     answer2+= preval
 
+endtime = time.time()
 print("part 1",answer)
 print("part 2",answer2)
+print("timing:", endtime-starttime)

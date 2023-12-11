@@ -1,9 +1,8 @@
-import time
 import re
+import time
 
 with open('11.in') as f:
     galaxy = f.readlines()
-
 
 starttime = time.time()
 exrows = []
@@ -20,9 +19,9 @@ for y in range(0,len(galaxy)):
             if x.start() in excols:
                 excols.remove(x.start())
 
-print(planets)
-print(exrows)
-print(excols)
+# print(planets)
+# print(exrows)
+# print(excols)
 
 answer = 0
 for m in range(0,len(planets)):
@@ -31,15 +30,13 @@ for m in range(0,len(planets)):
         maxx = max(planets[n][0],planets[m][0])
         miny = min(planets[n][1],planets[m][1])
         maxy = max(planets[n][1],planets[m][1])
-        # diffx = maxx-minx
-        # diffy = planets[n][1] - planets[m][1]
         dist = (maxx-minx)+(maxy-miny)
-        print(planets[m],"to",planets[n],"is",dist)
-        dist += len(list(filter(lambda x: x > minx and x < maxx,excols)))
-        dist += len(list(filter(lambda y: y > miny and y < maxy,exrows)))
-        #dist += len(list(excols[excols>minx and excols<maxx]))
-        #dist += len(list(exrows[exrows>miny and exrows<maxy]))
-        print(planets[m],"to",planets[n],"is now",dist)
+        #print(planets[m],"to",planets[n],"is",dist)
+        dist += (len(list(filter(lambda x: x > minx and x < maxx,excols)))*999999)
+        dist += (len(list(filter(lambda y: y > miny and y < maxy,exrows)))*999999)
+        #print(planets[m],"to",planets[n],"is now",dist)
         answer+=dist
 
-print("part 1",answer)
+endtime = time.time()
+print("part 2",answer)
+print("timing",endtime-starttime)
