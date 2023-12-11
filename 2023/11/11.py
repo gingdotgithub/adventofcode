@@ -6,7 +6,7 @@ with open('11.in') as f:
 
 starttime = time.time()
 exrows = []
-excols = list(range(0,len(galaxy[0])-1))
+excols = list(range(0,len(galaxy[0].strip())))
 planets = []
 
 for y in range(0,len(galaxy)):
