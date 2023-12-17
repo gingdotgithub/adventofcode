@@ -1,3 +1,4 @@
+import numpy as np
 
 with open('14.in') as f:
     data = f.readlines()
@@ -5,12 +6,17 @@ with open('14.in') as f:
 for x in range(0,len(data)):
     print(data[x])
     data[x] = list(data[x].strip())
-print(data)
+#print(data)
 
-def rotate(data):
-    data = [list(r) for r in zip(*data[::1])]
-    print(data)
-    return data
+def printcols(cols):
+    for row in cols:
+        print("".join(row))
+
+def rotate(cols,way):
+    npcols = np.array(cols)
+    cols = np.rot90(npcols,way).tolist()
+    return cols
+
 
 def calcweight(cols):
     answer = 0
@@ -25,7 +31,7 @@ def tilt(cols):
     for x in range(0,len(cols)):
         dots = []
         for y in range(0,len(cols[x])):
-            print("checking",x,y,cols[x][y])
+            # print("checking",x,y,cols[x][y])
             if cols[x][y] == ".":
                 dots.append(y)
             elif cols[x][y] == "#":
@@ -36,36 +42,43 @@ def tilt(cols):
                     cols[x][lowestdot] = "O"
                     cols[x][y] = "."
                     dots.append(y)
-
+    #printcols(cols)
     return cols
 
-data = rotate(data)
+data = rotate(data,1)
 data = tilt(data)
 answer = calcweight(data)
 print("part 1:",answer)
 
 
+colsdone = [tuple(map(tuple,data))]
+colsseen = set(tuple(map(tuple,data)))
+data = rotate(data,1)
+notseen = True
+counter = 0
+#for n in range(0,1000000000):
+while notseen == True:
+    counter += 1
+    print("doing",counter)
+    for m in range(0,4):
+        data = tilt(data)
+        data = rotate(data,-1)
+    
+    printcols(data)
+    print("its weight is:",calcweight(data))
+    tupleofdata = tuple(map(tuple,data))
+    if tupleofdata in colsseen:
+        notseen = False
+    else:
+        colsseen.add(tupleofdata)
+        colsdone.append(tupleofdata)
+        print("its weight is still",calcweight(data))
+        
 
-# answer = 0
-# for n in range(0,2):
-#     for m in range(0,4):
-#         reversed = False
-#         if m > 1:
-#             reversed = True
-#         answer,data = tilt(data,reversed)
-#         for row in data:
-#             print(row)
+first = colsdone.index(tupleofdata)
+looplength = counter-first
+print(counter, first, len(colsdone),looplength)
 
-# answer = 0
-# cols = []
-# for y in range(0,len(data[0])):
-#     cols.append([])
-# for x in range(0,len(data)):
-#     for y in range(0,len(data[x])):
-#         cols[y].append(data[x][y])
-
-# for row in cols:
-#     print(row)
-
-# print("part 2:",answer)
-
+indexofresult = first+((1000000000-first)%looplength)
+print(indexofresult)
+print("part 2:", calcweight(colsdone[indexofresult]))
