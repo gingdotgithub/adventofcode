@@ -6,11 +6,9 @@ starttime = time.time()
 
 seen = set() #for states been to already
 queue = [] #for the priority queue
-start = (0,(0,0),(0,0),0) #heuristic, heat loss, (x, y), (dirX, dirY), steps
-    #heuristic in this case is for a* rather than dijkstra
-target = (len(data)-1,len(data[0])-1)
+start = (0,(0,0),(0,0),0) #heat loss, (x, y), (dirX, dirY), steps
+target = (len(data[0])-1,len(data)-1)
 heapq.heappush(queue,start)
-    #in tihs case the objects in the queue include the heuristic, the increasing heatloss, the location, the direction, and the number of steps taken
 
 while len(queue) > 0:
     heatloss, coord, dir, steps = heapq.heappop(queue)
@@ -30,7 +28,6 @@ while len(queue) > 0:
             nextcoord = (coord[0]+dir[0],coord[1]+dir[1])
             if nextcoord[0] >= 0 and nextcoord[0] < len(data[0]) and nextcoord[1] >= 0 and nextcoord[1] < len(data): #still inside grid
                 newheatloss = heatloss+int(data[nextcoord[1]][nextcoord[0]]) #standard dikstra cost add
-                #heuristic = newheatloss+((target[0]-nextcoord[0])+(target[1]-nextcoord[1])) #a* heuristic using manhattan distance
                 heapq.heappush(queue,(newheatloss,nextcoord,dir,steps+1)) #add to the heapqueue
         
         if steps > 3 or dir == (0,0):
@@ -40,6 +37,5 @@ while len(queue) > 0:
                     nextcoord = (coord[0]+newdir[0],coord[1]+newdir[1]) #same as above
                     if nextcoord[0] >= 0 and nextcoord[0] < len(data[0]) and nextcoord[1] >= 0 and nextcoord[1] < len(data):
                         newheatloss = heatloss+int(data[nextcoord[1]][nextcoord[0]])
-                        #heuristic = newheatloss+((target[0]-nextcoord[0])+(target[1]-nextcoord[1]))
                         heapq.heappush(queue,(newheatloss,nextcoord,newdir,1))
     
