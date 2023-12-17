@@ -1,3 +1,5 @@
+import time
+
 with open('16.in') as f:
     grid = f.readlines()
 
@@ -6,8 +8,8 @@ for row in range(0,len(grid)):
 
 def part1(starttile):
     nexttiles=[starttile] #thats x,y position and direction x,y
-    beenthere = []
-    energized = []
+    beenthere = set()
+    energized = set()
     moving = True
 
     while moving:
@@ -17,13 +19,13 @@ def part1(starttile):
             tile = nexttiles.pop(0)
             #print("doing",tile)
             if tile not in beenthere:
-                beenthere.append(tile)
+                beenthere.add(tile)
                 if tile[0] < 0 or tile[1] < 0 or tile[0] >= len(grid[0]) or tile[1] >= len(grid):
                     n = 1
                     #print(tile,"is off grid")
                 else:
                     if (tile[0],tile[1]) not in energized:
-                        energized.append((tile[0],tile[1]))
+                        energized.add((tile[0],tile[1]))
                     tval = grid[tile[1]][tile[0]]
                     if tval == ".":
                         nexttiles.append((tile[0]+tile[2],tile[1]+tile[3],tile[2],tile[3]))
@@ -63,9 +65,12 @@ def part1(starttile):
         moving = False
     #print(energized)
     return len(energized)
-
+starttime = time.time()
 print("part 1:",part1((0,0,1,0)))
+endtime = time.time()
+print("timing",endtime-starttime)
 
+starttime = time.time()
 bestanswer = 0
 for x in range(0,len(grid[0])):
     print("starting at",(x,0,0,1))
@@ -86,4 +91,6 @@ for y in range(0,len(grid)):
     if thisanswer > bestanswer:
         bestanswer = thisanswer
 print("part 2:",bestanswer)
+endtime = time.time()
+print("part 2 timing:",endtime-starttime)
         
