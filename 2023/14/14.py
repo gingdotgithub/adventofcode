@@ -45,12 +45,13 @@ def tilt(cols):
     #printcols(cols)
     return cols
 
-data = rotate(data,1)
-data = tilt(data)
-answer = calcweight(data)
-print("part 1:",answer)
+# Part 1
+# data = rotate(data,1)
+# data = tilt(data)
+# answer = calcweight(data)
+# print("part 1:",answer)
 
-
+# Part 2
 colsdone = [tuple(map(tuple,data))]
 colsseen = set(tuple(map(tuple,data)))
 data = rotate(data,1)
@@ -66,7 +67,8 @@ while notseen == True:
     
     printcols(data)
     print("its weight is:",calcweight(data))
-    tupleofdata = tuple(map(tuple,data))
+    tupleofdata = tuple(map(tuple,data)) 
+    #probably have should have just worked with tuples from the start. 
     if tupleofdata in colsseen:
         notseen = False
     else:
