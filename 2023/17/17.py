@@ -1,7 +1,7 @@
 import heapq
 import time
 
-data = open('17-2.test').read().splitlines()
+data = open('17.in').read().splitlines()
 starttime = time.time()
 
 seen = set() #for states been to already
@@ -38,4 +38,3 @@ while len(queue) > 0:
                     if nextcoord[0] >= 0 and nextcoord[0] < len(data[0]) and nextcoord[1] >= 0 and nextcoord[1] < len(data):
                         newheatloss = heatloss+int(data[nextcoord[1]][nextcoord[0]])
                         heapq.heappush(queue,(newheatloss,nextcoord,newdir,1))
-    
