@@ -1,4 +1,5 @@
 import time
+import math
 
 data = open('20.in').read().splitlines()
 starttime = time.time()
@@ -6,8 +7,7 @@ starttime = time.time()
 modules = {}
 globalqueue = []
 conjcounts = {}
-states = {}
-
+cyclelengths = {"gt":-1,"vr":-1,"nl":-1,"lr":-1} #part 2: these feed into rx in my input
 
 for row in data:
     row = row.split(" -> ")
@@ -21,13 +21,16 @@ for row in data:
         if dest not in conjcounts:
             conjcounts[dest] = 0
         conjcounts[dest] += 1
-print(conjcounts)
+# print(conjcounts)
 startmodule = 'broadcaster'
 signal = 0 #0 is low, 1 is high
 
 pulsecounts = {0:0,1:0}
+rxnotfound = 0
+rxcount = []
 
-for n in range(0,1000):
+n = 0
+while True:
     pulsecounts[0]+=1
     globalqueue.append((startmodule,"button0"))
     while len(globalqueue) > 0:
@@ -42,8 +45,10 @@ for n in range(0,1000):
                 pulsecounts[signal]+=1
                 if dest in modules:
                     globalqueue.append((dest,module+str(signal)))
+                if module in cyclelengths and sendingsignal == 1:
+                    cyclelengths[module] = n+1 #+1 because it would actually be the next cycle
+
         elif modtype == 1:
-            #signal = modulequeues[module].pop(0)
             if signal == 0:
                 modules[module][2] = 1-modules[module][2]
                 sendingsignal = modules[module][2]
@@ -51,6 +56,8 @@ for n in range(0,1000):
                     pulsecounts[sendingsignal]+=1
                     if dest in modules:
                         globalqueue.append((dest,module+str(sendingsignal)))
+                    if module in cyclelengths and sendingsignal == 1:
+                        cyclelengths[module] = n+1
         elif modtype == 2:
             modules[module][2][sender] = signal
             sendingsignal = 1
@@ -60,15 +67,31 @@ for n in range(0,1000):
                 pulsecounts[sendingsignal]+=1
                 if dest in modules:
                     globalqueue.append((dest,module+str(sendingsignal)))
-                    
+                if module in cyclelengths and sendingsignal == 1:
+                    cyclelengths[module] = n+1
+
         #f = input("?")            
-        print(globalqueue)
-    print(pulsecounts)
+        # print(globalqueue)
+    
+    if -1 not in cyclelengths.values():
+        break
 
+    # print("pulse counts:",pulsecounts)
+    # print("cycle lengths",cyclelengths)
+    #f = input("?")
+    n+=1
+    rxnotfound = 0
+
+# endtime = time.time()
+# print("high pulses:",pulsecounts[1])
+# print("low pulses:",pulsecounts[0])
+# print("part 1:",(pulsecounts[0]*pulsecounts[1]))
+# print("part 1 timing:",endtime-starttime)
+
+# print(cyclelengths)
+
+answer2 = math.lcm(*cyclelengths.values())
 endtime = time.time()
-print("high pulses:",pulsecounts[1])
-print("low pulses:",pulsecounts[0])
-print("part 1:",(pulsecounts[0]*pulsecounts[1]))
-print("part 1 timing:",endtime-starttime)
-
+print("part 2",answer2)
+print("part 2 timing:",endtime-starttime)
     
