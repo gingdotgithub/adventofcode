@@ -23,4 +23,4 @@
 | 18   | [:star:](18/18.py) | [:star:](18/18.py) |
 | 19   | [:star:](19/19.py) | [:star:](19/19.py) |
 | 20   | [:star:](20/20.py) | [:star:](20/20.py) |
-
+| 21   | [:star:](21/21.py) | [:star:](21/21.py) (needed serious help on this one)|
