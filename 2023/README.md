@@ -24,3 +24,7 @@
 | 19   | [:star:](19/19.py) | [:star:](19/19.py) |
 | 20   | [:star:](20/20.py) | [:star:](20/20.py) |
 | 21   | [:star:](21/21.py) | [:star:](21/21.py) (needed serious help on this one)|
+| 22   | [:star:](22/22.py) | [:star:](22/22.py) |
+| 23   | [:star:](23/23.py) | [:star:](23/23.py) but it takes 5hrs. should fix one day.|
+| 24   | [:star:](24/24.py) | not yet |
+| 25   | not yet | not yet |

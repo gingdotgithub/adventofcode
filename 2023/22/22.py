@@ -50,6 +50,7 @@ for brickabove in bricks:
 print(hasbricksontopof) 
 print(hasbricksunder)
 
+zappable = set()
 answer = 0
 for brickID in range(0,len(bricks)):
     print("doing brick",brickID)
@@ -63,8 +64,36 @@ for brickID in range(0,len(bricks)):
         if allsupported:
             print("adding one")
             answer+=1
+            zappable.add(brickID)
     else:
         print("nothing on top, so adding one")
         answer+=1
+        zappable.add(brickID)
 
 print("part 1",answer)
+
+answer2=0
+for brickID in range(0,len(bricks)):
+    falling = [brickID]
+    if brickID not in zappable:
+        print("starting with brick",brickID)
+        fallcheck = [brickID]
+        while len(fallcheck) > 0:
+            bID = fallcheck.pop(0)
+            print("checking brick",bID)
+            if bID in hasbricksontopof:
+                [fallcheck.append(newbrick) for newbrick in hasbricksontopof[bID] if newbrick not in fallcheck]
+                print("addings bricks above",hasbricksontopof[bID])
+            notsupported = True
+            if bID in hasbricksunder:
+                print("checking supporting bricks",hasbricksunder[bID])
+                for brick in hasbricksunder[bID]:
+                    if brick not in falling:
+                        notsupported = False
+                if notsupported:
+                    falling.append(bID)
+                    print("added to falling",falling)
+    falling.remove(brickID)
+    print(falling)
+    answer2+=len(falling)
+print("part 2:",answer2)
