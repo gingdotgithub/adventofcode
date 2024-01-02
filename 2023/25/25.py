@@ -1,7 +1,7 @@
 import networkx
 import time
 
-data = open('25.in').read().splitlines()
+data = open('25.test').read().splitlines()
 starttime = time.time()
 g = networkx.Graph()
 

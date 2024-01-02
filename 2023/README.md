@@ -27,4 +27,4 @@
 | 22   | [:star:](22/22.py) | [:star:](22/22.py) |
 | 23   | [:star:](23/23.py) | [:star:](23/23.py) ~~but it takes 5hrs. should fix one day.~~ now 11s :muscle:|
 | 24   | [:star:](24/24.py) | [:star:](24/24.py) |
-| 25   | [:star:](25/25.py) | [:star:](25/25.py) |
+| 25   | [:star:](25/25.py) | [:star:](25/25.py) - see [v2](25/25-v2.py) for karger implementation without networkx|
