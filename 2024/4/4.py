@@ -12,19 +12,45 @@ def checkpos(pos):
                 count+=1
     return count
     
+def checkposX(pos):
+    (y,x) = pos
+    print("checking",y," ",x)
+    count = 0
+    checks = [(-1,-1,1,1),(-1,1,1,-1),(1,1,-1,-1),(1,-1,-1,1)]
+    for (a,b,c,d) in checks:
+        if (dataset[y+b][x+a] == 'M' and dataset[y+d][x+c] == 'S'):
+            count+=1
+    if count == 2:
+        return 1
+    return 0
+
+def part1():
+    total = 0
+    for y in range(len(dataset)):
+        # print(dataset[y])
+        for x in range(len(dataset[0])):
+            # print(dataset[y][x])
+            if dataset[y][x] == 'X':
+                total+=checkpos((y,x))
+
+    print("Part 1:",total)
+
+def part2():
+    total = 0
+    for y in range(1,len(dataset)-1):
+        # print(dataset[y])
+        for x in range(1,len(dataset[0])-1):
+            # print(dataset[y][x])
+            if dataset[y][x] == 'A':
+                total+=checkposX((y,x))
+
+    print("Part 1:",total)
+
+
 
 with open('4.in') as f:
     dataset = f.readlines()
     dataset = [line.rstrip('\n') for line in dataset]
     print(dataset)
-
-total = 0
-for y in range(len(dataset)):
-    # print(dataset[y])
-    for x in range(len(dataset[0])):
-        # print(dataset[y][x])
-        if dataset[y][x] == 'X':
-            total+=checkpos((y,x))
-
-print("found ",total)
-            
+    part1()
+    part2()
