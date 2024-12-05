@@ -44,7 +44,7 @@ def part2():
             if dataset[y][x] == 'A':
                 total+=checkposX((y,x))
 
-    print("Part 1:",total)
+    print("Part 2:",total)
 
 
 
