@@ -12,14 +12,9 @@ while dataset[x] != "":
         mustBeAfter[a] = [b]
     else:
         mustBeAfter[a].append(b)
-    if b not in mustBeBefore.keys():
-        mustBeBefore[b] = [a]
-    else:
-        mustBeBefore[b].append(a)
     x+=1
 
 print(mustBeAfter)
-print(mustBeBefore)
 
 x+=1
 
@@ -34,16 +29,11 @@ while x < len(dataset):
     toSwap = False
     a = 0
     while a < z:
-        b = 0
+        b = a+1
         while b < z:
             if a < b:
                 if update[a] not in mustBeAfter.keys() or update[b] not in mustBeAfter[update[a]]:
                     print(update[b], "not in mustBeAfter",update[a])
-                    badUpdate = True
-                    toSwap = True
-            if a > b:
-                if update[a] not in mustBeBefore.keys() or update[b] not in mustBeBefore[update[a]]:
-                    print(update[b],"not in mustBeBefore",update[a])
                     badUpdate = True
                     toSwap = True
             if toSwap: #for badupdates, toswap swaps them and starts the validation again
