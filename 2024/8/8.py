@@ -1,4 +1,4 @@
-with open('8.test') as f:
+with open('8.in') as f:
     dataset = f.readlines()
     dataset = [line.rstrip('\n') for line in dataset]
 
@@ -44,7 +44,12 @@ for key in antns.keys():
                 while inbox:
                     xstart+=xdiff
                     ystart+=ydiff
-                    if 0 <= xstart < w and 0 <= ystart < y and (xstart,ystart) not in nodes:
-                        nodes.append((xstart,ystart))
-
+                    if 0 <= xstart < w and 0 <= ystart < h:
+                        if (xstart,ystart) not in nodes:
+                            nodes.append((xstart,ystart))
+                    else:
+                        inbox = False
+print(nodes)
+nodes = sorted(nodes, key=lambda tup: (tup[0],tup[1]))
+print(nodes)
 print("part 2:",len(nodes))
