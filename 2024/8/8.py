@@ -1,4 +1,4 @@
-with open('8.in') as f:
+with open('8.test') as f:
     dataset = f.readlines()
     dataset = [line.rstrip('\n') for line in dataset]
 
@@ -30,4 +30,21 @@ for key in antns.keys():
 
 print("part 1:",len(nodes))
 
+nodes = []
+for key in antns.keys():
+    for ant in antns[key]:
+        for ant2 in antns[key]:
+            print("comparing",ant,"and",ant2)
+            if ant != ant2:
+                xstart = ant[0]
+                ystart = ant[1]
+                xdiff = ant2[0]-ant[0]
+                ydiff = ant2[1]-ant[1]
+                inbox = True
+                while inbox:
+                    xstart+=xdiff
+                    ystart+=ydiff
+                    if 0 <= xstart < w and 0 <= ystart < y and (xstart,ystart) not in nodes:
+                        nodes.append((xstart,ystart))
 
+print("part 2:",len(nodes))
