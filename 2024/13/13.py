@@ -19,17 +19,14 @@ while x < len(dataset):
     machines.append([[[a[0],b[0]],[a[1],b[1]]],[t[0],t[1]]])
     x+=4
 
-print(machines)
+# print(machines)
 
 def part1():
     total = 0
     for machine in machines:
         options = list(map(float,np.linalg.inv(machine[0]).dot(machine[1])))
         # options = list(map(float,np.linalg.solve(machine[0],machine[1])))
-        # options = [str(s) for s in options]
-        # options = [float(s[:10]) for s in options]
         # print(options)
-        # print(options[0]-int(options[0]),options[1]-int(options[1]))
         if -0.001 < options[0]-round(options[0]) < 0.001 and -0.001 < options[1]-round(options[1]) < 0.001:
             # print("found one",options)
             total+=(round(options[0])*costa)+(round(options[1])*costb)
