@@ -37,27 +37,25 @@ def processgrid():
     return instr,bot
 
 instr,bot = processgrid()
-print(grid)
-print(instr)
-print(bot)
+# print(grid)
+# print(instr)
+# print(bot)
 
 def move(loc,dir):
-    print(grid[loc[1]+dir[1]][loc[0]+dir[0]])
+    # print(grid[loc[1]+dir[1]][loc[0]+dir[0]])
     if grid[loc[1]+dir[1]][loc[0]+dir[0]] == "#":
-        print("not moving")
+        # print("not moving")
         return False
     elif grid[loc[1]+dir[1]][loc[0]+dir[0]] == "O":
         if move([loc[0]+dir[0],loc[1]+dir[1]],dir):
-            temp = grid[loc[1]+dir[1]][loc[0]+dir[0]]
-            grid[loc[1]+dir[1]][loc[0]+dir[0]] = grid[loc[1]][loc[0]]
-            grid[loc[1]][loc[0]] = temp
+            #swap
+            grid[loc[1]][loc[0]],grid[loc[1]+dir[1]][loc[0]+dir[0]] = grid[loc[1]+dir[1]][loc[0]+dir[0]],grid[loc[1]][loc[0]]
             return True
         else:
             return False
     else:
-        temp = grid[loc[1]+dir[1]][loc[0]+dir[0]]
-        grid[loc[1]+dir[1]][loc[0]+dir[0]] = grid[loc[1]][loc[0]]
-        grid[loc[1]][loc[0]] = temp
+        #swap
+        grid[loc[1]][loc[0]],grid[loc[1]+dir[1]][loc[0]+dir[0]] = grid[loc[1]+dir[1]][loc[0]+dir[0]],grid[loc[1]][loc[0]]
         return True
 
 def printgrid(grid):
@@ -68,7 +66,7 @@ def part1(bot):
     for action in instr:
         if move(bot,dirs[action]):
             bot = [bot[0]+dirs[action][0],bot[1]+dirs[action][1]]
-            print("bot now at",bot)
+            # print("bot now at",bot)
         # printgrid()
         # temp = input()
 
@@ -82,13 +80,15 @@ def calcgps():
 
 
 part1(bot)
-printgrid(grid)
+# printgrid(grid)
 time2 = time.time()
 print("Part 1",calcgps())
-print("Part 1 time:",time2-time1)
 
-grid2 = [[]]
-print(grid2)
+######################
+#### PART 2 Code #####
+######################
+
+
 def rebuildgrid():
     for y in range(len(grid)):
         for x in range(len(grid[0])):
@@ -115,82 +115,44 @@ def rebuildgrid():
     return bot
 
 grid = []
-instr,bot = processgrid()
-bot = rebuildgrid()
-printgrid(grid2)
-
-def part2(bot):
-    for action in instr:
-        print("action is",action)
-        if canmove2(bot,dirs[action]):
-            move2(bot,dirs[action])
-            bot = [bot[0]+dirs[action][0],bot[1]+dirs[action][1]]
-            print("bot now at",bot)
-        # printgrid(grid2)
-        # temp = input()
+grid2 = [[]]
+instr,bot = processgrid() #regen original state
+bot = rebuildgrid() #as double wide, and return bot new location
+# printgrid(grid2)
 
 def move2(loc,dir):
-    print("next item is:",grid2[loc[1]+dir[1]][loc[0]+dir[0]])
+    # print("next item is:",grid2[loc[1]+dir[1]][loc[0]+dir[0]])
     # printgrid(grid2)
     # test = input()
     if dir == dirs["<"] or dir == dirs[">"]:
-        if grid2[loc[1]+dir[1]][loc[0]+dir[0]] == '.':
-            temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]]
-            grid2[loc[1]+dir[1]][loc[0]+dir[0]] = grid2[loc[1]][loc[0]]
-            grid2[loc[1]][loc[0]] = temp
-        else:
+        if grid2[loc[1]+dir[1]][loc[0]+dir[0]] != '.':
             move2([loc[0]+dir[0],loc[1]+dir[1]],dir)
-            temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]]
-            grid2[loc[1]+dir[1]][loc[0]+dir[0]] = grid2[loc[1]][loc[0]]
-            grid2[loc[1]][loc[0]] = temp
+        #swap
+        grid2[loc[1]][loc[0]],grid2[loc[1]+dir[1]][loc[0]+dir[0]] = grid2[loc[1]+dir[1]][loc[0]+dir[0]],grid2[loc[1]][loc[0]]
+        
     elif grid2[loc[1]+dir[1]][loc[0]+dir[0]] == '[':
-        # if grid2[loc[1]+dir[1]][loc[0]+dir[0]] == '.':
-        #     if grid2[loc[1]][loc[0]] != "@":
-        #         temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]+1]
-        #         grid2[loc[1]+dir[1]][loc[0]+dir[0]+1] = grid2[loc[1]][loc[0]+1]
-        #         grid2[loc[1]][loc[0]+1] = temp
-        #     temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]]
-        #     grid2[loc[1]+dir[1]][loc[0]+dir[0]] = grid2[loc[1]][loc[0]]
-        #     grid2[loc[1]][loc[0]] = temp
-        # else:
         if grid2[loc[1]+dir[1]+dir[1]][loc[0]+dir[0]] != grid2[loc[1]+dir[1]][loc[0]+dir[0]]:
             move2([loc[0]+dir[0]+1,loc[1]+dir[1]],dir)
         move2([loc[0]+dir[0],loc[1]+dir[1]],dir)
         if grid2[loc[1]][loc[0]] == '[':#!= "@":
-            temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]+1]
-            grid2[loc[1]+dir[1]][loc[0]+dir[0]+1] = grid2[loc[1]][loc[0]+1]
-            grid2[loc[1]][loc[0]+1] = temp
-        temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]]
-        grid2[loc[1]+dir[1]][loc[0]+dir[0]] = grid2[loc[1]][loc[0]]
-        grid2[loc[1]][loc[0]] = temp
+            #swap neighbour
+            grid2[loc[1]][loc[0]+1],grid2[loc[1]+dir[1]][loc[0]+dir[0]+1] = grid2[loc[1]+dir[1]][loc[0]+dir[0]+1],grid2[loc[1]][loc[0]+1]
+        #swap
+        grid2[loc[1]][loc[0]],grid2[loc[1]+dir[1]][loc[0]+dir[0]] = grid2[loc[1]+dir[1]][loc[0]+dir[0]],grid2[loc[1]][loc[0]]
         
     elif grid2[loc[1]+dir[1]][loc[0]+dir[0]] == ']':
-        # if grid2[loc[1]+dir[1]][loc[0]+dir[0]] == '.':
-        #     if grid2[loc[1]][loc[0]] != "@":
-        #         temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]-1]
-        #         grid2[loc[1]+dir[1]][loc[0]+dir[0]-1] = grid2[loc[1]][loc[0]-1]
-        #         grid2[loc[1]][loc[0]-1] = temp
-        #     temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]]
-        #     grid2[loc[1]+dir[1]][loc[0]+dir[0]] = grid2[loc[1]][loc[0]]
-        #     grid2[loc[1]][loc[0]] = temp
-        # else:
         if grid2[loc[1]+dir[1]+dir[1]][loc[0]+dir[0]] != grid2[loc[1]+dir[1]][loc[0]+dir[0]]:
              move2([loc[0]+dir[0]-1,loc[1]+dir[1]],dir)
         move2([loc[0]+dir[0],loc[1]+dir[1]],dir)
         if grid2[loc[1]][loc[0]] == ']': #!= "@":
-            temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]-1]
-            grid2[loc[1]+dir[1]][loc[0]+dir[0]-1] = grid2[loc[1]][loc[0]-1]
-            grid2[loc[1]][loc[0]-1] = temp
-        temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]]
-        grid2[loc[1]+dir[1]][loc[0]+dir[0]] = grid2[loc[1]][loc[0]]
-        grid2[loc[1]][loc[0]] = temp
+            #swap neighbour
+            grid2[loc[1]][loc[0]-1],grid2[loc[1]+dir[1]][loc[0]+dir[0]-1] = grid2[loc[1]+dir[1]][loc[0]+dir[0]-1],grid2[loc[1]][loc[0]-1]
+        #swap
+        grid2[loc[1]][loc[0]],grid2[loc[1]+dir[1]][loc[0]+dir[0]] = grid2[loc[1]+dir[1]][loc[0]+dir[0]],grid2[loc[1]][loc[0]]
     else:
-        temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]]
-        grid2[loc[1]+dir[1]][loc[0]+dir[0]] = grid2[loc[1]][loc[0]]
-        grid2[loc[1]][loc[0]] = temp
+        #swap
+        grid2[loc[1]][loc[0]],grid2[loc[1]+dir[1]][loc[0]+dir[0]] = grid2[loc[1]+dir[1]][loc[0]+dir[0]],grid2[loc[1]][loc[0]]
         
-        
-
 
 def canmove2(loc,dir):
     if grid2[loc[1]+dir[1]][loc[0]+dir[0]] == '.':
@@ -200,17 +162,21 @@ def canmove2(loc,dir):
     elif dir == dirs["<"] or dir == dirs[">"]:
         return canmove2([loc[0]+dir[0]+dir[0],loc[1]+dir[1]],dir)
     elif grid2[loc[1]+dir[1]][loc[0]+dir[0]] == '[':
-        if canmove2([loc[0]+dir[0],loc[1]+dir[1]],dir) and canmove2([loc[0]+dir[0]+1,loc[1]+dir[1]],dir):
-            return True
-        else:
-            return False
+        return canmove2([loc[0]+dir[0],loc[1]+dir[1]],dir) and canmove2([loc[0]+dir[0]+1,loc[1]+dir[1]],dir)
     elif grid2[loc[1]+dir[1]][loc[0]+dir[0]] == ']':
-        if canmove2([loc[0]+dir[0],loc[1]+dir[1]],dir) and canmove2([loc[0]+dir[0]-1,loc[1]+dir[1]],dir):
-            return True
-        else:
-            return False
+        return canmove2([loc[0]+dir[0],loc[1]+dir[1]],dir) and canmove2([loc[0]+dir[0]-1,loc[1]+dir[1]],dir)
     else:
         return False
+
+def part2(bot):
+    for action in instr:
+        # print("action is",action)
+        if canmove2(bot,dirs[action]):
+            move2(bot,dirs[action])
+            bot = [bot[0]+dirs[action][0],bot[1]+dirs[action][1]]
+            # print("bot now at",bot)
+        # printgrid(grid2)
+        # temp = input()
 
 def calcgps2():
     total = 0
@@ -221,6 +187,8 @@ def calcgps2():
     return total
 
 part2(bot)
-printgrid(grid2)
+# printgrid(grid2)
 time3 = time.time()
 print("Part 2:",calcgps2())
+print("Part 1 time:",time2-time1)
+print("Part 2 time:",time3-time2)
