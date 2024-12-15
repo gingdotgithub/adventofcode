@@ -3,7 +3,7 @@ import re
 import math
 
 time1=time.time()
-with open('15-3.test') as f:
+with open('15.in') as f:
     dataset = f.readlines()
     dataset = [line.rstrip('\n') for line in dataset]
 
@@ -62,7 +62,7 @@ def move(loc,dir):
 
 def printgrid(grid):
     for row in grid:
-        print(row)
+        print("".join(row))
 
 def part1(bot):
     for action in instr:
@@ -126,13 +126,13 @@ def part2(bot):
             move2(bot,dirs[action])
             bot = [bot[0]+dirs[action][0],bot[1]+dirs[action][1]]
             print("bot now at",bot)
-        printgrid(grid2)
-        temp = input()
+        # printgrid(grid2)
+        # temp = input()
 
 def move2(loc,dir):
     print("next item is:",grid2[loc[1]+dir[1]][loc[0]+dir[0]])
-    printgrid(grid2)
-    test = input()
+    # printgrid(grid2)
+    # test = input()
     if dir == dirs["<"] or dir == dirs[">"]:
         if grid2[loc[1]+dir[1]][loc[0]+dir[0]] == '.':
             temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]]
@@ -153,9 +153,10 @@ def move2(loc,dir):
         #     grid2[loc[1]+dir[1]][loc[0]+dir[0]] = grid2[loc[1]][loc[0]]
         #     grid2[loc[1]][loc[0]] = temp
         # else:
+        if grid2[loc[1]+dir[1]+dir[1]][loc[0]+dir[0]] != grid2[loc[1]+dir[1]][loc[0]+dir[0]]:
+            move2([loc[0]+dir[0]+1,loc[1]+dir[1]],dir)
         move2([loc[0]+dir[0],loc[1]+dir[1]],dir)
-        move2([loc[0]+dir[0]+1,loc[1]+dir[1]],dir)
-        if grid2[loc[1]][loc[0]] != "@":
+        if grid2[loc[1]][loc[0]] == '[':#!= "@":
             temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]+1]
             grid2[loc[1]+dir[1]][loc[0]+dir[0]+1] = grid2[loc[1]][loc[0]+1]
             grid2[loc[1]][loc[0]+1] = temp
@@ -173,9 +174,10 @@ def move2(loc,dir):
         #     grid2[loc[1]+dir[1]][loc[0]+dir[0]] = grid2[loc[1]][loc[0]]
         #     grid2[loc[1]][loc[0]] = temp
         # else:
+        if grid2[loc[1]+dir[1]+dir[1]][loc[0]+dir[0]] != grid2[loc[1]+dir[1]][loc[0]+dir[0]]:
+             move2([loc[0]+dir[0]-1,loc[1]+dir[1]],dir)
         move2([loc[0]+dir[0],loc[1]+dir[1]],dir)
-        move2([loc[0]+dir[0]-1,loc[1]+dir[1]],dir)
-        if grid2[loc[1]][loc[0]] != "@":
+        if grid2[loc[1]][loc[0]] == ']': #!= "@":
             temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]-1]
             grid2[loc[1]+dir[1]][loc[0]+dir[0]-1] = grid2[loc[1]][loc[0]-1]
             grid2[loc[1]][loc[0]-1] = temp
