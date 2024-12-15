@@ -3,7 +3,7 @@ import re
 import math
 
 time1=time.time()
-with open('15.test') as f:
+with open('15-3.test') as f:
     dataset = f.readlines()
     dataset = [line.rstrip('\n') for line in dataset]
 
@@ -144,44 +144,44 @@ def move2(loc,dir):
             grid2[loc[1]+dir[1]][loc[0]+dir[0]] = grid2[loc[1]][loc[0]]
             grid2[loc[1]][loc[0]] = temp
     elif grid2[loc[1]+dir[1]][loc[0]+dir[0]] == '[':
-        if grid2[loc[1]+dir[1]][loc[0]+dir[0]] == '.':
-            if grid2[loc[1]][loc[0]] != "@":
-                temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]+1]
-                grid2[loc[1]+dir[1]][loc[0]+dir[0]+1] = grid2[loc[1]][loc[0]+1]
-                grid2[loc[1]][loc[0]+1] = temp
-            temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]]
-            grid2[loc[1]+dir[1]][loc[0]+dir[0]] = grid2[loc[1]][loc[0]]
-            grid2[loc[1]][loc[0]] = temp
-        else:
-            move2([loc[0]+dir[0],loc[1]+dir[1]],dir)
-            move2([loc[0]+dir[0]+1,loc[1]+dir[1]],dir)
-            if grid2[loc[1]][loc[0]] != "@":
-                temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]+1]
-                grid2[loc[1]+dir[1]][loc[0]+dir[0]+1] = grid2[loc[1]][loc[0]+1]
-                grid2[loc[1]][loc[0]+1] = temp
-            temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]]
-            grid2[loc[1]+dir[1]][loc[0]+dir[0]] = grid2[loc[1]][loc[0]]
-            grid2[loc[1]][loc[0]] = temp
+        # if grid2[loc[1]+dir[1]][loc[0]+dir[0]] == '.':
+        #     if grid2[loc[1]][loc[0]] != "@":
+        #         temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]+1]
+        #         grid2[loc[1]+dir[1]][loc[0]+dir[0]+1] = grid2[loc[1]][loc[0]+1]
+        #         grid2[loc[1]][loc[0]+1] = temp
+        #     temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]]
+        #     grid2[loc[1]+dir[1]][loc[0]+dir[0]] = grid2[loc[1]][loc[0]]
+        #     grid2[loc[1]][loc[0]] = temp
+        # else:
+        move2([loc[0]+dir[0],loc[1]+dir[1]],dir)
+        move2([loc[0]+dir[0]+1,loc[1]+dir[1]],dir)
+        if grid2[loc[1]][loc[0]] != "@":
+            temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]+1]
+            grid2[loc[1]+dir[1]][loc[0]+dir[0]+1] = grid2[loc[1]][loc[0]+1]
+            grid2[loc[1]][loc[0]+1] = temp
+        temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]]
+        grid2[loc[1]+dir[1]][loc[0]+dir[0]] = grid2[loc[1]][loc[0]]
+        grid2[loc[1]][loc[0]] = temp
         
     elif grid2[loc[1]+dir[1]][loc[0]+dir[0]] == ']':
-        if grid2[loc[1]+dir[1]][loc[0]+dir[0]] == '.':
-            if grid2[loc[1]][loc[0]] != "@":
-                temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]-1]
-                grid2[loc[1]+dir[1]][loc[0]+dir[0]-1] = grid2[loc[1]][loc[0]-1]
-                grid2[loc[1]][loc[0]-1] = temp
-            temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]]
-            grid2[loc[1]+dir[1]][loc[0]+dir[0]] = grid2[loc[1]][loc[0]]
-            grid2[loc[1]][loc[0]] = temp
-        else:
-            move2([loc[0]+dir[0],loc[1]+dir[1]],dir)
-            move2([loc[0]+dir[0]-1,loc[1]+dir[1]],dir)
-            if grid2[loc[1]][loc[0]] != "@":
-                temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]-1]
-                grid2[loc[1]+dir[1]][loc[0]+dir[0]-1] = grid2[loc[1]][loc[0]-1]
-                grid2[loc[1]][loc[0]-1] = temp
-            temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]]
-            grid2[loc[1]+dir[1]][loc[0]+dir[0]] = grid2[loc[1]][loc[0]]
-            grid2[loc[1]][loc[0]] = temp
+        # if grid2[loc[1]+dir[1]][loc[0]+dir[0]] == '.':
+        #     if grid2[loc[1]][loc[0]] != "@":
+        #         temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]-1]
+        #         grid2[loc[1]+dir[1]][loc[0]+dir[0]-1] = grid2[loc[1]][loc[0]-1]
+        #         grid2[loc[1]][loc[0]-1] = temp
+        #     temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]]
+        #     grid2[loc[1]+dir[1]][loc[0]+dir[0]] = grid2[loc[1]][loc[0]]
+        #     grid2[loc[1]][loc[0]] = temp
+        # else:
+        move2([loc[0]+dir[0],loc[1]+dir[1]],dir)
+        move2([loc[0]+dir[0]-1,loc[1]+dir[1]],dir)
+        if grid2[loc[1]][loc[0]] != "@":
+            temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]-1]
+            grid2[loc[1]+dir[1]][loc[0]+dir[0]-1] = grid2[loc[1]][loc[0]-1]
+            grid2[loc[1]][loc[0]-1] = temp
+        temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]]
+        grid2[loc[1]+dir[1]][loc[0]+dir[0]] = grid2[loc[1]][loc[0]]
+        grid2[loc[1]][loc[0]] = temp
     else:
         temp = grid2[loc[1]+dir[1]][loc[0]+dir[0]]
         grid2[loc[1]+dir[1]][loc[0]+dir[0]] = grid2[loc[1]][loc[0]]
