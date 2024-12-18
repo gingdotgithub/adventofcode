@@ -61,11 +61,12 @@ def part1(facing):
 
 time2 = time.time()    
 bestdistance = part1(facing)
+time3 = time.time()    
 print("visited:",visited, len(visited))
 uniquevis = set(visited)
 print("unique",len(uniquevis))
 print("part 1:",bestdistance)
-test = input()
+# test = input()
 goodseats = set()
 dfsvisited = []
 def part2(nn,facing,cost):
@@ -106,8 +107,8 @@ def part2(nn,facing,cost):
     # return result
 
 part2((ns[0],ns[1]),facing,0)
-time3 = time.time()
+time4 = time.time()
 # print(goodseats,len(goodseats))       
 print("Part 2",len(goodseats)+1)
-print("part 1 time:",time2-time1)
-print("Part 2 time:",time3-time2)
+print("part 1 time:",time3-time2)
+print("Part 2 time:",time4-time3)
