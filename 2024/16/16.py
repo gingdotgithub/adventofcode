@@ -79,7 +79,7 @@ def part2(nn,facing,cost):
         # print("doing",nn,dfsvisited)
         if grid[nn[1]][nn[0]] == 'E':
             dfsvisited.remove(nn)
-            print("cost",cost,"best",bestdistance)
+            # print("cost",cost,"best",bestdistance)
             # test = input()
             if cost == bestdistance:
                 # print("cost",cost,"best",bestdistance)
@@ -87,11 +87,11 @@ def part2(nn,facing,cost):
             else:
                 return False
         if cost > bestdistance:
-            print("too long now",cost)
+            # print("too long now",cost)
             dfsvisited.remove(nn)
             return False
         if cost > visited[(nn[0],nn[1])]+1000:
-            print("gone a suboptimal route to here")
+            # print("gone a suboptimal route to here")
             dfsvisited.remove(nn)
             return False
         for dir in dirs[facing]:
