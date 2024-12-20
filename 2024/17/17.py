@@ -18,8 +18,8 @@ registers.append(int(dataset[2][1]))
 ip = 0
 mainoutput = []
 
-print(registers)
-print(ops)
+# print(registers)
+# print(ops)
 time2 = time.time()
 def getcombooperand(operand):
     if 3 < operand < 7:
@@ -68,26 +68,26 @@ def part1(ip):
 part1(ip)
 time3 = time.time()
 print("Part 1:",",".join(mainoutput))
-print("Part 1 time:",time3-time2)
+
 
 #opscopy = [str(x) for x in ops]
 def part2():
     global mainoutput,todos
     for op in range(len(ops)):
-        print("op is",op)
-        print("todos are",todos)
+        # print("op is",op)
+        # print("todos are",todos)
         todonext = []
         for todo in todos:
             for x in range(8):
                 tryingval = (todo << 3) + x
-                print('tryingval',tryingval)
+                # print('tryingval',tryingval)
                 mainoutput = []
                 registers[0] = tryingval
                 registers[1] = 0
                 registers[2] = 0
                 part1(0)
-                print("mainoutput is",list(map(int,mainoutput)))
-                print("matches?",ops[-op-1:])
+                # print("mainoutput is",list(map(int,mainoutput)))
+                # print("matches?",ops[-op-1:])
                 if list(map(int,mainoutput)) == ops[-op-1:]:
                     todonext.append(tryingval)
         todos = todonext
@@ -97,9 +97,12 @@ def part2():
 
 todos = [0]
 todos = part2()
-print(todos)
-print(mainoutput)
-print(min(todos))
+# print(todos)
+# print(mainoutput)
+time4 = time.time()
+print("Part 2:",min(todos))
+print("Part 1 time:",time3-time2)
+print("Part 2 time:",time4-time3)
         
 
 ## OLD CODE THAT WILL NEVER END
