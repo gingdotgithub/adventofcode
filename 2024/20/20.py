@@ -48,10 +48,11 @@ def part1():
         nn = tocheck[x]
         visited.append(nn)
         for dir in dirs:
-            if (nn[0]+dir[0],nn[1]+dir[1]) not in tocheck:
-                nextn = (nn[0]+(dir[0]*2),nn[1]+(dir[1]*2))
-                if nextn in tocheck and nextn not in visited:
-                    cheatdist = gridpoints[nextn]-gridpoints[nn]-2
+            # if (nn[0]+dir[0],nn[1]+dir[1]) not in tocheck:
+            nextn = (nn[0]+(dir[0]*2),nn[1]+(dir[1]*2))
+            if nextn in tocheck and nextn not in visited:
+                cheatdist = gridpoints[nextn]-gridpoints[nn]-2
+                if cheatdist > 0:
                     if cheatdist not in cheats.keys():
                         cheats[cheatdist] = []
                     cheats[cheatdist].append((nn,nextn))
@@ -64,6 +65,7 @@ def part1():
 cheats = {}
 todo.append([ns,0])
 findpoints()
+print("processd the path...")
 time2 = time.time()
 # print(gridpoints)
 print("Part 1:",part1())
